@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Categories</title>
+
+  <link rel="stylesheet" href="/home/index.css">
+  <script src="/home/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+  <style>
+    .nav-link-category{
+    color: white;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: white;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      <img src="/home/search-icon.png" alt="" class="search-icon" onclick="showSearch()">
+      <a href="/index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/cart" class="cart-count">Cart (
+        <% if (typeof cart !== "undefined") { %>
+          <%= cart.length %>
+          <% } else {%>
+          0
+          <% } %>
+      )</a>
+      <a href="/profile"> <img src="/home/user-icon.png" alt="" class="user-icon"></a>
+
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/index"  >Home</a></li>
+        <li><a href="/categories_list" class="nav-link-category">Categories</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="search-box" id="search-box">
+      <input type="text" name="psearch" value="" id="ps">
+      <!--<label for="">Search</label>-->
+ 
+    <a id="kish" onclick="searchp()" ><img src="/home/search-icon.png" alt="" class="search-input-icon"  onclick="search()"></a> 
+      <img src="/home/cancel-icon.png" alt="" class="cancel-input-icon" onclick="hideSearch()">
+    </div>
+  </nav>
+
+
+
+  <div class="category-list-container">
+   
+    <h1 class="category-heading">Books by Categories</h1>
+    <hr>
+    <div class="category-list">
+    <% categories.forEach(function(category){ %>
+       <a href="/category_product/<%= category.slug %>"><%= category.title %></a> 
+  <% }); %>
+  </div>
+</div>
+
+ 
+ 
+
+<%- include('layouts/footer') %>
+
+
+
+
+<!-- search and cancel -->
+<script type="text/javascript">
+  var search = document.getElementById("search-box");
+
+  function showSearch() {
+    search.style.display = "block";
+  }
+
+  function hideSearch() {
+    search.style.display = "none";
+  }
+</script>

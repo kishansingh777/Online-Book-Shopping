@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/home/index.css">
+    <script src="/home/main.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+    <style>
+      .nav-link-contact-us{
+      color: white;
+      border-width: 0 0 1px 0;
+      border-style: solid;
+      border-color: white;
+    }
+    </style>
+</head>
+
+<body>
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      <img src="/home/search-icon.png" alt="" class="search-icon" onclick="showSearch()">
+      <a href="/index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/cart" class="cart-count">Cart (
+        <% if (typeof cart !== "undefined") { %>
+          <%= cart.length %>
+          <% } else {%>
+          0
+          <% } %>
+      )</a>
+     <a href="/profile"> <img src="/home/user-icon.png" alt="" class="user-icon"></a>
+
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/index">Home</a></li>
+        <li><a href="/categories_list">Categories</a></li>
+        <li><a href="/contact"  class="nav-link-contact-us">Contact Us</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="search-box" id="search-box">
+      <input type="text" name="psearch" value="" id="ps">
+      <!--<label for="">Search</label>-->
+ 
+    <a id="kish" onclick="searchp()" onclick="return(validation())"><img src="/home/search-icon.png" alt="" class="search-input-icon"  ></a> 
+      <img src="/home/cancel-icon.png" alt="" class="cancel-input-icon" onclick="hideSearch()">
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+  <div style="  height: 625px;">
+
+    <!--   <img src=" /home/cart-icon2.png" alt=""> -->
+<!--       <h2 style="background-color: white;margin-left: 525px; box-shadow: 0px 0px 15px black; text-align: center; width: 21.5%;padding: 10px;margin-top: 80px;margin-bottom: 30px;border: solid black 1px;">USER DETAILS</h2>
+ --><div class="container" style="background-color: white;box-shadow: 0px 0px 15px black;border-radius: 0%; margin: 0%; text-align: center; width: 60%;margin-bottom: 4px; padding: 20px;margin-top: 45px;margin-left: 275px; border: solid black 1px;;height: 550px; border-radius: 7px;" >
+     
+  <div class="inputs" >
+        <label class="form-label" for="name"><b><h1 style="color:orange">Contact Us</h1></b></label>
+       <i> <h3>CONTACT US FOR BOOKS YOU MIGHT WISH TO INQUIRE ABOUT,OR FOR ANY OTHER REQUIREMENT YOU MIGHT HAVE</h3> </i>
+        </div >
+<br><br>
+
+
+<h1 style="text-align: center; margin-bottom: 5px;">Email</h1><br>
+<h2 style="text-align: center; margin-top: 0;"><i> booksella1@gmail.com</i></h2>
+<br><br>
+<h1 style="text-align: center; margin-bottom: 5px;">Phone-Number</h1><br><br>
+<h2 style="text-align: center; margin-top: 0;"><i>7400220853</i></h2>
+<h1 style="text-align: center; margin-bottom: 5px;">Whatsapp Number</h1><br><br>
+<h2 style="text-align: center; margin-top: 0;"><i>7400220853</i></h2>
+       
+       
+       
+      </div>
+
+      
+   
+   
+    </div>
+    <%- include('layouts/footer') %>
+
+     <!-- search and cancel -->
+  <script type="text/javascript">
+    var search = document.getElementById("search-box");
+
+    function showSearch() {
+      search.style.display = "block";
+    }
+
+    function hideSearch() {
+      search.style.display = "none";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT US</title>
+  <link rel="stylesheet" href="/home/index.css">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      <img src="/home/search-icon.png" alt="" class="search-icon" onclick="showSearch()">
+      <a href="/index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/cart" class="cart-count">Cart (
+        <% if (typeof cart !== "undefined") { %>
+          <%= cart.length %>
+          <% } else {%>
+          0
+          <% } %>
+      )</a>
+     <a href="/profile"> <img src="/home/user-icon.png" alt="" class="user-icon"></a>
+
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/index"  >Home</a></li>
+        <li><a href="/categories_list">Categories</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="search-box" id="search-box">
+      <input type="text" name="psearch" value="" id="ps">
+      <!--<label for="">Search</label>-->
+ 
+    <a id="kish" onclick="searchp()" onclick="return(validation())"><img src="/home/search-icon.png" alt="" class="search-input-icon"  ></a> 
+      <img src="/home/cancel-icon.png" alt="" class="cancel-input-icon" onclick="hideSearch()">
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div style=" height: 710px;">
+ 
+    <!--   <img src=" /home/cart-icon2.png" alt=""> -->
+    <!--       <h2 style="background-color: white;margin-left: 525px; box-shadow: 0px 0px 15px black; text-align: center; width: 21.5%;padding: 10px;margin-top: 80px;margin-bottom: 30px;border: solid black 1px;">USER DETAILS</h2>
+ -->
+    <div class="container"
+      style="background-color: white;box-shadow: 0px 0px 15px black;border-radius: 0%; margin: 0%; text-align: center; width: 60%;margin-bottom: 4px; padding: 20px;margin-top: 30px;margin-left: 275px; border: solid black 1px;;height: 550px; border-radius: 7px;">
+
+      <div class="inputs">
+        <label class="form-label" for="name"><b>
+            <h1 style="color: yellowgreen;">ABOUT US</h1>
+          </b></label>
+      </div>
+      <div>
+        <h2>Welcome to Booksella, your ultimate destination for all your book-related needs!</h2>
+        <h3><i>
+            <p>Welcome to Booksella, your ultimate destination for all your book-related needs!
+
+              At Booksella.com, we are passionate about reading and believe that books have the power to change lives.
+            </p>
+            <p>Our
+              online bookshop was created to make the world of books more accessible to everyone, no matter where they
+              are
+              located.</p>
+            </p>
+            We offer a vast collection of books in various genres, including fiction, non-fiction and more, ensuring
+            that there is something for everyone.</p>
+            <p>We are committed to providing our customers with an exceptional shopping experience, and our website is
+              designed to make it easy for you to find the books you love..</p>
+              <p> We have a user-friendly interface that allows
+                you to search for books by author, title, or genre</p>
+                <p>Thank you for choosing Booksella.com as your go-to destination for all your book needs. </p>
+                <p> We hope you enjoy browsing through our collection and finding your next favorite read.</p>
+                <p>Happy Reading!</p>
+          </i></h3>
+      </div>
+
+
+      <!--   • Reaching customer satisfaction and needs with the help of their reviews and experience.
+        • We will be providing a simple user interface so that it becomes more convenient for the user to use the website
+        • There are websites like bookishsanta or bookswagon where you can find books but the availability of books are limited
+        and variety is very less so our purpose is to provide wide availability of books.
+        To make the customer experience better by providing feedback section
+        •To save time by providing books at their doorstep
+        •Educating and motivating the community on the beneficial aspects of reading books.
+        •Securing user details with the help of a login system. -->
+
+
+    </div>
+
+
+
+
+  </div>
+  <%- include('layouts/footer') %>
+</body>
+
+</html>

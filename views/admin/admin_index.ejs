@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+
+  <link rel="stylesheet" href="/home/admin.css">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      
+      <a href="/admin/admin_index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+     <a href="/login"> <img src="https://cdn-icons-png.flaticon.com/512/5509/5509597.png" alt="" class="user-icon"></a>
+      <span class="logout-text"></span>
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/admin/admin_index" class="nav-link-home">Home</a></li>
+        <li><a href="/admin/products">Product</a></li>
+        <li><a href="/admin/category">Category</a></li>
+         
+       
+      </ul>
+    </div>
+
+  </nav>
+
+
+  
+  <div class="admin-index-heading-container">
+    <h1>Total Order :<%=orderCount%></h1>
+  </div>
+
+       <!--Search bar-->
+    <div class="search-box" id="search-box">
+      <input type="text" name="psearch"  placeholder="Search By Date" id="ps">
+    <a id="kish" onclick="searchp()" onclick="return(validation())"><img src="/home/search-icon-black.png" alt="" class="search-input-icon"  ></a> 
+     
+    </div>
+
+
+   
+  <table class="admin-product-table">
+    <thead>
+        <tr class="home">
+            <th>Product</th>
+            <th>Quantity</th>
+             <th>Date</th>
+            <th>Order Id</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Order Status</th>
+            <th>Payment Mode</th>
+            <th>Edit</th>
+           
+        </tr>
+    </thead>
+
+ <tbody>
+        <% order.forEach(function(Order){ %>
+        <tr>
+            <td>
+              <% Order.product.forEach(function(product){ %>
+              
+                <p><%=  product.title %></p>
+                
+              <% }); %>
+            </td>
+            <td>
+              <% Order.product.forEach(function(product){ %>
+              
+                <p>Qty-<%= product.Qty %></p>
+                
+              <% }); %>
+            </td>
+            <td> <%= Order.date %></td>
+            <td> <%= Order.orderId %></td>
+            <td><%= Order.email%></td>
+            <td>
+               <% Order.Address.forEach(function(addr){ %>
+              <p><%= addr.street%>,<%= addr.city%>,<%= addr.zip%>,<%= addr.state%>,<%= addr.country%></p>
+                 
+                <% }); %>
+            </td>    
+            <td><%= Order.paymentstatus%></td>
+               <td>  <%= Order.paymentmode%></td>
+               <td><a href="/admin_index/edit/<%= Order._id %>">Edit</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+
+
+</body>
+<script>
+  function searchp(){
+
+let a= document.getElementById("ps").value;
+let search=a.trim();
+if(search==""){
+ document.getElementById("kish").href = "/admin/admin-search?psearch=ahsnaxjanajyw";
+}
+else{
+ document.getElementById("kish").href = "/admin/admin-search?psearch="+search;
+}
+}
+</script>
+
+</html>
+
+  

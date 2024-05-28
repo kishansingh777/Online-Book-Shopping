@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Add Products</title>
+
+  <link rel="stylesheet" href="/home/admin.css">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+  <style>
+    .nav-link-product{
+    color: white;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: white;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      
+      <a href="/admin/admin_index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/login"> <img src="https://cdn-icons-png.flaticon.com/512/5509/5509597.png" alt="" class="user-icon"></a>
+
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/admin/admin_index">Home</a></li>
+        <li><a href="/admin/products"  class="nav-link-product"> Product</a></li>
+        <li><a href="/admin/category">Category</a></li>
+         
+       
+      </ul>
+    </div>
+
+  </nav>
+
+  <h4  id="error" ></h4>
+  <% if (errors) {%>
+    <% errors.forEach(function(error) { %>
+    <div class="error-msg">
+        <%= error.msg %>
+    </div>
+    <% });%>
+<% }%>
+
+
+
+  <div class="heading-container">
+  <h2 class="page-title">Add a product</h2>
+<a href="/admin/products" class="btn btn-primary">Back to all products</a>
+<br><br>
+</div>
+
+<form method="post" action="/admin/products/add-product" enctype="multipart/form-data"  name="myform"  onsubmit="return(validation())">
+    
+    <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Description</label>
+        <textarea name="desc" class="form-control product-desc-textarea" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Category</label>
+        <select name="category" class="form-control">
+            <% categories.forEach(function(cat){ %>
+                <option value="<%= cat.slug %>"><%= cat.title %></option>
+            <% }); %>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Price</label>
+        <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="Price">
+    </div>
+
+    <div class="form-group">
+        <label for="">Quantity</label>
+        <input type="text" class="form-control" name="quantity" value="<%= quantity %>" placeholder="quantity">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Image</label>
+        <input type="file" class="form-control-img" name="image" id="img"><br>
+         
+    </div>
+    
+    <button class="add_category_Submit">Submit</button>
+</form>
+
+
+
+<script>
+  
+  var error =document.getElementById('error')
+
+   function validation(){
+    let a= document.forms["myform"]["title"].value;
+    let b= document.forms["myform"]["desc"].value;
+    let c= document.forms["myform"]["price"].value;
+    let d= document.forms["myform"]["quantity"].value;
+    let x=a.trim();
+    let y=b.trim();
+    let z=c.trim();
+    let k=d.trim();
+    let message1="Input box cannot be empty";
+    let message2="Please reduce the input size ";
+    if(x=="" || y=="" || z=="" || k==""){
+        error.style.display="inline-block";
+        document.getElementById('error').innerHTML=message1;
+
+        return false;
+
+     }
+     else if(x.length>40 || y.length>1000 || z.length>6 || k.length>5 ){
+      error.style.display="inline-block";
+        document.getElementById('error').innerHTML=message2;
+
+        return false;
+     }
+    }
+
+</script>

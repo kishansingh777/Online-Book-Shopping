@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Payment</title>
+       <link rel="stylesheet" href="/home/index.css">
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+              integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+              crossorigin="anonymous">
+       <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap"
+              rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+              integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+              crossorigin="anonymous"></script>
+
+       <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap"
+              rel="stylesheet">
+
+</head>
+
+<body>
+
+       <div style="background-color: #ffefdc; height: 850px;">
+              <div class="welcome-msg" style="background-color: blue;">
+                     <p>Welcome to our store</p>
+              </div>
+              <h4  id="addr-error" ></h4>
+              <!--   <img src=" /home/cart-icon2.png" alt=""> -->
+              <!--       <h2 style="background-color: white;margin-left: 525px; box-shadow: 0px 0px 15px black; text-align: center; width: 21.5%;padding: 10px;margin-top: 80px;margin-bottom: 30px;border: solid black 1px;">USER DETAILS</h2>-->
+              <div class="container"
+                     style="background-color: white;box-shadow: 0px 0px 15px black;border-radius: 0%; margin: 0%; text-align: center; width: 60%;margin-bottom: 4px; padding: 20px;margin-top: 25px;margin-left: 275px; border: solid black 1px;;height: 720px; border-radius: 8px;">
+
+                     <div class="inputs">
+                            <label class="form-label" for="name"><b>
+                                          <h1><i>Checkout</i></Checkout>
+                                          </h1>
+                                   </b></label>
+                     </div>
+                     <br><br>
+                     <div>
+
+                            <form action="/choose-payment" method="post" name="myform"  onsubmit="return(validation())">
+                         
+                                    
+                                  
+                                   <h2 style="text-align: center; font-size: 1.4rem;">Enter Address</h2><br><br>
+                                   
+                                   <div style="text-align: center;">
+                                          <div>
+                                          <label for="street" style="margin-right: 31px;">Street:</label>
+                                          <input type="text" name="street" placeholder="Street" style="width: 60%;  margin-bottom: 15px;"><br>
+                                   </div>
+                                          <label for="city">City:</label>
+                                          <input type="text" name="city" placeholder="City" style="margin-left: 45px;width: 60%; margin-bottom: 15px;"><br>
+                                          <label for="state">State:</label>
+                                          <input type="text" name="state" placeholder="State" style="margin-left: 38px;width: 60%;  margin-bottom: 15px;"><br>
+                                          <label for="pincode">Pincode:</label>
+                                          <input type="number" name="zip" placeholder="Pincode" style="margin-left: 18px;width: 60%;  margin-bottom: 15px;"><br>
+                                          <label for="country">Country:</label>
+                                          <input type="text" name="country" placeholder="Country" value="INDIA" readonly style="margin-left: 19px;width: 60%;"><br>
+
+
+
+                                   </div>
+                                   <br><br>
+
+
+                                   <button class="btn btn-success">Proceed</button><br>
+                                   
+
+                                  
+                            </form>
+ 
+                     </div>
+
+
+
+
+              </div>
+</body>
+
+
+<script>
+ var error =document.getElementById('addr-error')
+ function validation(){
+    let a= document.forms["myform"]["street"].value;
+    let b= document.forms["myform"]["city"].value;
+    let c= document.forms["myform"]["state"].value;
+    let d= document.forms["myform"]["country"].value;
+    let e= document.forms["myform"]["zip"].value;
+    let x=a.trim();
+    let y=b.trim();
+    let z=c.trim();
+    let k=d.trim();
+    let j=e.trim();
+    let message1="Input box cannot be empty";
+    let message2="Pincode should be  6 digit";
+    if(x=="" || y=="" || z=="" || k=="" || j==""){
+        error.style.display="inline-block";
+        document.getElementById('addr-error').innerHTML=message1;
+
+        return false;
+
+     }
+     else if(j.length>6 || j.length<6){
+       error.style.display="inline-block";
+        document.getElementById('addr-error').innerHTML=message2;
+
+        return false;
+     }
+     else{
+       return true;
+     }
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+</html>

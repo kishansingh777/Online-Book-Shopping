@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href=" /home/register.css">
+ 
+  </head>
+  <body>
+
+    <div class="register">
+
+    <img src=" /home/login-img.jpg" alt="">
+
+    <div class="register-form">
+
+      <h4  id="error"></h4>
+      <% if(variable != '') { %>
+
+        <strong id="ejs-error">Email already exists </strong>
+  
+        <% } %>
+      <h4  id="error1"></h4>
+      <h4  id="error2"></h4>
+      <h4  id="error3"></h4>
+      <h4  id="error4"></h4>
+      <h1 class="register-heading">Register</h1>
+
+
+      <form class="" name="myform" action="/register" method="post"  onsubmit="return(validation())">
+        <div class="inputs">
+        <input class="form-input nameinput" type="text" name="name" value="" id="name"><br>
+        <label class="form-label" for="name">Full Name</label>
+        </div>
+
+        <div class="inputs">
+        <input class="form-input" type="email" name="email" value="" id="email"><br>
+        <label class="form-label" for="email">Email</label>
+        </div>
+
+        <div class="inputs">
+        <input class="form-input" type="number" name="number" value="" id="number" placeholder="91+"><br>
+        <label class="form-label" for="number">Phone Number </label>
+        </div>
+
+        <div class="inputs">
+        <input class="form-input" type="password" name="confpass" id="password"><br>
+        <label class="form-label" for="password">Password</label>
+        </div>
+
+        <div class="inputs">
+        <input class="form-input" type="password" name="confpass1" id="password1"><br>
+        <label class="form-label" for="password1">Confirm Password</label>
+        </div>
+
+
+        <button type="submit" name="button"  >Register</button>
+        <p>Already have an account? <a href="login">Login</a></p>
+
+
+      </form>
+
+    </div>
+      </div>
+
+
+  
+      <script type="text/javascript">
+      var error =document.getElementById('error')
+      var error1 =document.getElementById('error1')
+      var error2 =document.getElementById('error2')
+      var error3 =document.getElementById('error3')
+      var error4 =document.getElementById('error4')
+
+      const input = document.querySelector('.nameinput');
+      input.addEventListener('keydown', function(event){
+        if((/\d/g).test(event.key)) event.preventDefault();
+      })
+
+       function validation(){
+         let e=document.forms["myform"]["name"].value;
+         let x=e.trim();
+         let message1="Please enter your name";
+
+         let y=document.forms["myform"]["email"].value;
+         let a=y.trim();
+         let message2="Please enter email";
+
+         let z=document.forms["myform"]["number"].value;
+         let b=z.trim();
+         let message3="Please enter number";
+         let message4="Please enter valid number";
+
+         let v=document.forms["myform"]["confpass"].value;
+         let c=v.trim();
+         let u=document.forms["myform"]["confpass1"].value;
+         let d=u.trim();
+        
+         let message5="Please enter password";
+         let message6="Password does not match";
+         let message7="Password length should be between 5 to 20 Character  ";
+         let errorcount=0;
+
+
+         if(x==""){
+            error.style.display="inline-block";
+            document.getElementById('error').innerHTML=message1;
+
+            errorcount++;
+
+         }
+         else {
+             error.style.display="none";
+         }
+         if(a==""){
+            error1.style.display="block";
+            document.getElementById('error1').innerHTML=message2;
+
+            errorcount++;
+
+         }
+         else {
+             error1.style.display="none";
+         }
+
+         if(b=="" ){
+            error2.style.display="block";
+            document.getElementById('error2').innerHTML=message3;
+
+            errorcount++;
+
+         }
+         else if (b.length<10 || b.length>10) {
+           error2.style.display="block";
+           document.getElementById('error2').innerHTML=message4;
+
+          errorcount++;
+         }
+         else {
+             error2.style.display="none";
+         }
+
+         if(c==""){
+            error3.style.display="block";
+            document.getElementById('error3').innerHTML=message5;
+
+            errorcount++;
+         }
+        else if (c.length<=5 || c.length>20 ) {
+           error3.style.display="block";
+           document.getElementById('error3').innerHTML=message7;
+
+          errorcount++;
+        }
+         else {
+             error3.style.display="none";
+         }
+
+         if (c!==d) {
+          error4.style.display="block";
+          document.getElementById('error4').innerHTML=message6;
+
+          errorcount++;
+
+        }
+        else {
+            error4.style.display="none";
+        }
+
+        if(errorcount==0){
+          return true;
+        }
+        else {
+          return false;
+        }
+
+
+
+
+       }
+
+
+
+
+       </script>
+</html>

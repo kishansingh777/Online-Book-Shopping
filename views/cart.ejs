@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cart</title>
+
+  <link rel="stylesheet" href="/home/cart.css">
+  <script src="/home/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      <img src="/home/search-icon.png" alt="" class="search-icon" onclick="showSearch()">
+      <a href="/index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/cart" class="cart-count">Cart (
+        <% if (typeof cart !== "undefined") { %>
+          <%= cart.length %>
+          <% } else {%>
+          0
+          <% } %>
+      )</a>
+      <a href="/profile"> <img src="/home/user-icon.png" alt="" class="user-icon"></a>
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/index" >Home</a></li>
+        <li><a href="/categories_list">Categories</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="search-box" id="search-box">
+      <input type="text" name="psearch" value="" id="ps">
+      <!--<label for="">Search</label>-->
+ 
+    <a id="kish" onclick="searchp()" onsubmit="return(validation())"><img src="/home/search-icon.png" alt="" class="search-input-icon"  ></a> 
+      <img src="/home/cancel-icon.png" alt="" class="cancel-input-icon" onclick="hideSearch()">
+    </div>
+  </nav>
+
+    <section class="product-container">
+      <div class="cart-header">
+        <h1 class="cart-welcome">Your Cart</h1>
+        <a href="/index">Continue shopping</a>
+      </div>
+      <div class="product-headers">
+        <h3 class="product-header1">Product</h3>
+         <h3 class="product-header2">Quantity</h3>
+         <h3 class="product-header3">Total</h3>
+      </div>
+      <div class="products">
+
+     
+      <% if(typeof cart!=="undefined"){%>
+
+
+      <% var cartTotal=0; %>
+      <% cart.forEach(function(product){%> 
+        <% var total=product.qty*product.price %>
+        <%  cartTotal+= total; %>
+        <div class="product">
+
+          <div class="cart-container">
+          <div class="product-img-container"><img src="<%= product.image %>" alt="" class="product-img"></div>
+          <div class="product-details-container">
+          <span class="product-name"><%= product.title %></span><br><br>
+           <span class="price">Rs.<%= product.price %></span><br>
+           <span class="stock-info">Status: In Stock</span>
+          </div>
+
+          <div class="product-quantity-container">
+             <div class="product-quantity-plus-minus">
+             <a href="/cart/update/<%= product.title %>?action=remove"><img src="https://cdn-icons-png.flaticon.com/512/9432/9432084.png"></a>
+             <div class="items-in-chart"><span><%= product.qty %></span></div>
+            <a href="/cart/update/<%= product.title %>?action=add"><img src="https://cdn-icons-png.flaticon.com/512/9428/9428840.png"  ></a>
+             </div>
+          <a href="/cart/update/<%= product.title %>?action=clear"><img src="https://cdn-icons-png.flaticon.com/512/9299/9299467.png" alt="" class="delete-product"  ></a>
+          </div>
+
+          <div class="product-total-container"><span class="total">Rs.<%= total %></span></div>
+         </div>
+         </div>
+         <% }); %>
+         <div class="cart-total-container">
+
+          <div class="cart-total-price">
+          <h3 class="cart-total-title">Total</h3>
+          <h3 class="cart-total">Rs. <%= cartTotal %></h3>
+
+          <!-- <% if(typeof email !="undefined") { %> -->
+         <div class="cart-checkout"><a href="cashondelivery" class="cart-checkout-button">CheckOut</a></div>
+         <!-- <% } %> -->
+        </div>
+          
+          </div>
+        <%} else{%>
+          <div class="empty-cart">
+          <a href=""> <h1 class="empty-cart-title">Your Cart  is empty</h1></a> 
+            </div>
+        <% } %>
+
+
+
+
+
+
+      </div>
+
+    </section>
+
+
+
+    <%- include('layouts/footer') %>
+    <!-- search and cancel -->
+    <script type="text/javascript">
+      var search = document.getElementById("search-box");
+
+      function showSearch() {
+        search.style.display = "block";
+      }
+
+      function hideSearch() {
+        search.style.display = "none";
+      }
+    </script>
+
+
+
+
+
+
+  </body>
+</html>

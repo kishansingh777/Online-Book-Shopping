@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Categories</title>
+
+  <link rel="stylesheet" href="/home/admin.css">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,700;1,100&display=swap" rel="stylesheet">
+  <style>
+    .nav-link-category{
+    color: white;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: white;
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="welcome-msg">
+    <p>Welcome to our store</p>
+  </div>
+  <nav>
+    <div class="nav-1">
+      
+      <a href="/admin/admin_index" class="home-link">
+        <h1 class="home-title-heading">Booksella</h1>
+      </a>
+      <a href="/login"> <img src="https://cdn-icons-png.flaticon.com/512/5509/5509597.png" alt="" class="user-icon"></a>
+
+    </div>
+    <div class="nav-2">
+      <ul class="nav-link">
+        <li><a href="/admin/admin_index" >Home</a></li>
+        <li><a href="/admin/products"> Product</a></li>
+        <li><a href="/admin/category" class="nav-link-category">Category</a></li>
+         
+       
+      </ul>
+    </div>
+
+  </nav>
+
+
+
+<div class="heading-container">
+<h2 class="page-title">Categories</h2>
+<a href="/admin/category/add_category" class="btn">Add a new category</a>
+<br><br>
+</div>
+<table class="category-table">
+
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categories.forEach(function(cat){ %>
+        <tr>
+            <td class="category-name"><%= cat.title %></td>
+            <td class="table-td"><a href="/admin/category/edit_category/<%= cat._id %>">Edit</a></td>
+            <td class="table-td"><a class="confirmDeletion" href="/admin/category/delete-category/<%= cat._id %>">Delete</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

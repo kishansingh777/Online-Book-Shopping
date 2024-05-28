@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="/home/login.css">
+    <title>Login</title>
+     
+  </head>
+  <body>
+    <% if(variable != '') { %>
+      <div class="error-msg">
+        <strong>Invalid Email or Password </strong>
+      </div>
+
+     
+
+      <% } %>
+    <div class="login">
+
+    <img src="/home/login-img.jpg" alt="">
+
+    <div class="login-form">
+      <h1 class="login-heading">Login</h1>
+
+      <form class="" action="/login" method="post">
+
+
+        <div class="inputs">
+        <input class="form-input" type="email" name="email" value="" id="email"><br>
+        <label class="form-label" for="email">Email</label>
+        </div>
+
+
+
+        <div class="inputs">
+        <input class="form-input" type="password" name="confpass" value="" id="password"><br>
+        <label class="form-label" for="password">Password</label>
+        </div>
+
+
+        <button type="submit" name="button">Login</button>
+        <p>Don't have an account? <a href="Register">Register</a></p>
+        <p>Forget Password? <a href="email">Reset</a></p>
+
+      </form>
+
+    </div>
+
+      </div>
+    </body>
+    </html>
+<script>
+  var error=document.getElementById("closebutton");
+  function hide(){
+    error.style.display="none";
+  }
+</script>
+  </body>
+</html>

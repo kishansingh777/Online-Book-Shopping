@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>payment</title>
+    <!-- Favicon-->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" size="119x119" href="/Horizon-App-Logo.png">
+
+    <!-- Paytm Checkout Js -->
+    <script type="application/javascript" src="https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/pqQOvQ34532874943456.js"></script>
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+           <!--  <a href="javascript:void(0);"><img style="width:80%;height:80%" src="/images/Horizon-Logo.png"></a> -->
+            <!--<small>Admin BootStrap Based - Material Design</small>-->
+        </div>
+        <div class="card">
+            <div class="body" style="text-align:center;">
+
+                <div class="preloader pl-size-xl">
+                    <div class="spinner-layer">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <h4>Please Wait...<br><br>Payment Gateway Redirection in Progress...</h4>
+            </div>
+        </div>
+        <div class="logo">
+
+           <!--  <a href="javascript:void(0);"><img style="width:80%;height:80%" src="/images/insurance.png"></a> -->
+            <!--<small>Admin BootStrap Based - Material Design</small>-->
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="//di8vsggi846z0.cloudfront.net/horizon/public/plugins/jquery/jquery.min.js"></script>
+    <script>
+        function getPaytmTxnToken(){
+            $.get("http://localhost:3000" + "/indexpaytm/paytm/initiate_transaction/"+1, function (data) {
+                if(data && data.Status === "Success" && data.data && data.data.txnToken !==""){
+                    let txnToken = data.data.txnToken;
+                    let orderId = data.data.orderId;
+                    let amount = data.data.amount;
+                    onScriptLoad(txnToken, orderId, amount)
+                }else{
+                    alert("txnToken token missing.");
+                    location.reload();
+                }
+            });
+        }
+        function onScriptLoad(txnToken, orderId, amount) {
+            // var txnToken = "f24486a092344fe5adf497d3be80a7321673675577262";
+            // var orderId = "1673675577205";
+            // var amount = "1.00";
+            var config = {
+                "root": "",
+                "flow": "DEFAULT",
+                "merchant":{
+                    "name":"BOOKSELLA",
+                    "logo":"/atomic-habit.jpeg"
+                },
+
+                "payMode":{
+                    "filter":{
+                        
+                        "exclude":["CARD"]
+                    }
+                },
+
+                "data": {
+                    "orderId": orderId,
+                    "token": txnToken,
+                    "tokenType": "TXN_TOKEN",
+                    "amount": amount
+                },
+                "handler":{
+                    "notifyMerchant": function (eventName, data) {
+                        if(eventName == 'SESSION_EXPIRED'){
+                            alert("Your session has expired!!");
+                             location.reload();
+                        }
+                    }
+                }
+            };
+
+            if (window.Paytm && window.Paytm.CheckoutJS) {
+                // initialze configuration using init method
+                window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+                    console.log('Before JS Checkout invoke');
+                    // after successfully update configuration invoke checkoutjs
+                    window.Paytm.CheckoutJS.invoke();
+                }).catch(function onError(error) {
+                    console.log("Error => ", error);
+                });
+            }
+        }
+        $(function () {
+           getPaytmTxnToken(); 
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/home/email.css">
+  <title>Change Password</title>
+
+</head>
+<body>
+  <% if(variable != '') { %>
+    <div class="error-msg">
+      <strong>Please enter registered email address </strong>
+    </div>
+
+    
+
+    <% } %>
+  <div class="login">
+
+  <img src="/home/login-img.jpg" alt="">
+  <div class="login-form">
+    <h1 class="login-heading">Email</h1>
+  <form method="post" action="send">
+    <p>
+        <label>Enter email</label>
+        <input type="text" name="email" required>
+    </p>
+    <p class="full">
+        <button type="submit">Submit</button>
+    </p>
+</form>
+</div>
+</div>
+  
+</body>
+</html>
